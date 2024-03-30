@@ -13,10 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
-    private List<Notes> mData;
+    private List<Notes> Data;
 
     public MyAdapter(List<Notes> data) {
-        mData = data;
+        Data = data;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -37,7 +37,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-            Notes note = mData.get(position);
+            Notes note = Data.get(position);
             holder.textView.setText(note.getTitle());
             holder.textView.setText(note.getDescription());
         }
@@ -45,6 +45,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
 
         @Override
         public int getItemCount() {
-            return mData.size();
+            return Data.size();
         }
 }

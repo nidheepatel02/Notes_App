@@ -14,9 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private RecyclerView mRecyclerView;
-    private MyAdapter mAdapter;
-    private List<Notes> mDataList = new ArrayList<>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,20 +31,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-        mRecyclerView = findViewById(R.id.tasksRecyclerView);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        // Initialize and set adapter
-        mAdapter = new MyAdapter(mDataList);
-        mRecyclerView.setAdapter(mAdapter);
-
-        // Add data to the list and notify adapter
-        mDataList.add(new Notes("Item 1","dfghjkm"));
-        mDataList.add(new Notes("Item 2","cdftyukm"));
-        mAdapter.notifyDataSetChanged();
-
-
-
     }
 }

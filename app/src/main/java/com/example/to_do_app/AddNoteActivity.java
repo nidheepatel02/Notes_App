@@ -55,8 +55,6 @@ public class AddNoteActivity extends AppCompatActivity {
 
         Toast.makeText(AddNoteActivity.this, "Note saved: " + title, Toast.LENGTH_SHORT).show();
 
-        finish();
-
         recyclerView = findViewById(R.id.tasksRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -66,6 +64,5 @@ public class AddNoteActivity extends AppCompatActivity {
         list.add(new Notes("Item 1","dfghjkm"));
         list.add(new Notes("Item 2","cdftyukm"));
         adapter.notifyDataSetChanged();
-
     }
 }

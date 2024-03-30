@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -20,9 +21,6 @@ public class AddNoteActivity extends AppCompatActivity {
     private EditText editTextDescription;
     private Button buttonSave;
 
-    private RecyclerView recyclerView;
-    private MyAdapter adapter;
-    private List<String> dataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,25 +39,10 @@ public class AddNoteActivity extends AppCompatActivity {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveNote();
+                Intent i = new Intent(AddNoteActivity.this, MainActivity.class);
+                startActivity(i);
             }
         });
     }
 
-    private void saveNote() {
-        String title = editTextTitle.getText().toString();
-        String description = editTextDescription.getText().toString();
-        long createdTime=System.currentTimeMillis();
-
-        recyclerView = findViewById(R.id.tasksRecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        dataList = new ArrayList<>(); // Your saved data should be here
-        adapter = new MyAdapter(dataList);
-        recyclerView.setAdapter(adapter);
-    }
-    private void addNewData(String newData) {
-        dataList.add(newData);
-        adapter.notifyDataSetChanged();
-    }
 }

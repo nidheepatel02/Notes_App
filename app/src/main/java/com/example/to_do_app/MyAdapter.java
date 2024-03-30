@@ -6,50 +6,45 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
-    private List<String> dataList;
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
+    private List<Notes> mData;
 
-    public MyAdapter(List<String> dataList) {
-        this.dataList = dataList;
+    public MyAdapter(List<Notes> data) {
+        mData = data;
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView textView;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            textView = itemView.findViewById(R.id.title1);
+            textView= itemView.findViewById(R.id.description);
         }
-
-        @NonNull
+    }
         @Override
 
-        public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            Context context = parent.getContext();
-            LayoutInflater inflater = LayoutInflater.from(context);
-            View itemView = inflater.inflate(R.layout.activity_main, parent, false);
-            return new MyViewHolder(itemView);
+        public ViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view, parent, false);
+            return new ViewHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-            String data = dataList.get(position);
-            holder.editView.setText(data);
-            holder.editView1.setText(data);
+        public void onBindViewHolder(ViewHolder holder, int position) {
+            Notes note = mData.get(position);
+            holder.textView.setText(note.getTitle());
+            holder.textView.setText(note.getDescription());
         }
 
 
         @Override
         public int getItemCount() {
-        return dataList.size();
+            return mData.size();
         }
-
-        static class MyViewHolder extends RecyclerView.ViewHolder {
-            EditText editView;
-            EditText editView1;
-
-            MyViewHolder(@NonNull View itemView) {
-                super(itemView);
-                editView = itemView.findViewById(R.id.editTextTitle);
-                editView1=itemView.findViewById(R.id.editTextDescription);
-            }
-
-    }
 }
